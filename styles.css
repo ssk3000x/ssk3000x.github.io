@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Braah+One&display=swap');
+
+body {
+  background: #000;
+  color: #f7c200;
+}
+
+a {
+  color: #f7c200;
+}
+
+h1 {
+  font-family: 'Braah One', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #222;
+}
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Braah One', sans-serif;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #f7c200;
+  transition: text-decoration 0.2s;
+}
+.navbar-title:hover {
+  text-decoration: underline;
+}
+.navbar-title img {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+.navbar-links a {
+  color: #f7c200;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 2rem;
+  transition: text-decoration 0.2s;
+  font-family: 'Braah One', sans-serif;
+}
+.navbar-links a:hover {
+  text-decoration: underline;
+}
