@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Confirmed - Top Binz App</title>
+  <title>About Us - Top Binz App</title>
   <link href="https://fonts.googleapis.com/css?family=Braah+One&display=swap" rel="stylesheet">
   <style>
     body {
@@ -54,18 +54,38 @@
     .navbar-links a:hover {
       text-decoration: underline;
     }
-    .message {
-      text-align: center;
-      margin-top: 4em;
+    .about-us-section {
+      max-width: 600px;
+      margin: 4em auto 0 auto;
+      background: #181818;
+      border-radius: 0.7em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      padding: 2em;
+      display: flex;
+      align-items: center;
+      gap: 2em;
     }
-    .message h1 {
-      font-family: 'Braah One', Arial, sans-serif;
-      font-size: 2em;
-      margin-bottom: 1em;
+    .about-us-image {
+      width: 6em;
+      height: 6em;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #f7c200;
     }
-    .message p {
-      font-size: 1.1em;
-      font-family: 'Braah One', Arial, sans-serif;
+    .about-us-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .about-us-name {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .about-us-desc {
+      font-size: 1.05em;
+      color: #f7c200;
+      opacity: 0.85;
     }
   </style>
 </head>
@@ -77,9 +97,12 @@
       <a href="privacy-policy.html">Privacy Policy</a>
     </div>
   </nav>
-  <div class="message">
-    <h1>Your email has been confirmed successfully!</h1>
-    <p>You can now close this website and login to the app.</p>
+  <div class="about-us-section">
+    <img class="about-us-image" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Swarchis Kulkarni" />
+    <div class="about-us-info">
+      <div class="about-us-name">Swarchis Kulkarni</div>
+      <div class="about-us-desc">Lead Developer. Passionate about building seamless user experiences and innovative web solutions.</div>
+    </div>
   </div>
 </body>
 </html>
