@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Top Binz App</title>
   <link href="https://fonts.googleapis.com/css?family=Braah+One&display=swap" rel="stylesheet">
   <style>
+    /* Base styles for desktop and larger screens */
     body {
       background: #000;
       color: #f7c200;
       font-family: 'Braah One', Arial, sans-serif;
       min-height: 100vh;
       margin: 0;
+      display: flex; /* Use flexbox for overall page layout */
+      flex-direction: column; /* Stack content vertically */
     }
+    /* Styles for policy/TOS content */
     .policy-tos, .policy-tos p, .policy-tos ul, .policy-tos li, .policy-tos h2, .policy-tos h3, .policy-tos h4 {
-      color: #dfdbce;
+      color: #dfdbce; /* Specific text color for content */
     }
     .policy-tos h1, .policy-tos .tos-title {
-      color: #f7c200;
+      color: #f7c200; /* Specific heading color */
     }
+
+    /* Navbar styling (consistent with other pages) */
     .navbar {
       width: 100%;
       background: #181818;
@@ -57,8 +66,116 @@
     .navbar-links a:hover {
       text-decoration: underline;
     }
+
+    /* Main content area for policy and TOS */
+    .policy-tos-content {
+      max-width: 900px; /* Max width for readability on desktop */
+      margin: 2.5em auto; /* Center content and add vertical spacing */
+      padding: 0 3em; /* Horizontal padding for content */
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    /* Adjust specific elements within policy content for spacing and size */
+    .policy-tos h1 {
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 0.5em;
+      margin-top: 2em; /* Added for top spacing for the main titles */
+    }
+    .policy-tos h2 {
+      font-size: 1.8em;
+      margin-top: 1.5em; /* Spacing above major sections */
+      margin-bottom: 0.8em;
+    }
+    .policy-tos h3 {
+      font-size: 1.4em;
+      margin-top: 1.2em; /* Spacing above sub-sections */
+      margin-bottom: 0.6em;
+    }
+    .policy-tos h4 {
+      font-size: 1.2em;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    .policy-tos p {
+      line-height: 1.6; /* Improve readability of paragraphs */
+      margin-bottom: 1em; /* Spacing between paragraphs */
+      font-size: 1.05em;
+    }
+    .policy-tos ul {
+      margin-bottom: 1em;
+      padding-left: 1.5em; /* Default list indentation */
+    }
+    .policy-tos li {
+      margin-bottom: 0.5em; /* Spacing between list items */
+      font-size: 1.05em;
+    }
+    .policy-tos em {
+      display: block; /* Make the last updated line a block for centering */
+      text-align: center;
+      margin-bottom: 1.5em;
+      font-size: 1em;
+    }
+    .policy-tos hr {
+      margin: 2em 0;
+      border-color: #f7c200;
+    }
+
+    /* Media queries for mobile responsiveness */
+    @media (max-width: 768px) {
+      /* Navbar adjustments (consistent with other pages) */
+      .navbar {
+        padding: 0.5em 1em;
+      }
+      .navbar-title {
+        font-size: 1.2em;
+      }
+      .navbar-title img {
+        height: 1.5em;
+        width: 1.5em;
+      }
+      .navbar-links {
+        gap: 1em;
+      }
+      .navbar-links a {
+        font-size: 0.9em;
+      }
+
+      /* Policy content adjustments for mobile */
+      .policy-tos-content {
+        margin: 1.5em auto; /* Reduce overall margin for mobile */
+        padding: 0 1.5em; /* Increase horizontal padding relative to screen size for better readability */
+      }
+
+      .policy-tos h1 {
+        font-size: 1.8em; /* Smaller main titles */
+        margin-top: 1.5em;
+      }
+      .policy-tos h2 {
+        font-size: 1.5em; /* Smaller section headings */
+        margin-top: 1em;
+      }
+      .policy-tos h3 {
+        font-size: 1.2em; /* Smaller sub-section headings */
+        margin-top: 0.8em;
+      }
+      .policy-tos h4 {
+        font-size: 1.1em;
+      }
+      .policy-tos p, .policy-tos li {
+        font-size: 0.95em; /* Slightly smaller body text and list items */
+      }
+      .policy-tos ul {
+        padding-left: 1em; /* Adjust list indentation for mobile */
+      }
+      .policy-tos em {
+        font-size: 0.9em; /* Smaller last updated text */
+      }
+      .policy-tos hr {
+        margin: 1.5em 0; /* Reduce horizontal rule margin */
+      }
+    }
   </style>
-  <title>Privacy Policy - Top Binz App</title>
 </head>
 <body>
   <nav class="navbar">
@@ -69,7 +186,7 @@
     </div>
   </nav>
   <main>
-    <section class="policy-tos">
+    <section class="policy-tos policy-tos-content">
       <h1 style="text-align: center; font-size: 2.2em; margin-bottom: 0.5em;">Privacy Policy</h1>
       <p style="margin-bottom: 1.5em;"><em>Last updated: July 12, 2025</em></p>
       <p>This Privacy Policy describes our policies and procedures on the collection, use, and disclosure of your information when you use the Service and tells you about your privacy rights and how the law protects you.</p>
