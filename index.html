@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <!DOCTYPE html>
-<html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Braah+One&display=swap" rel="stylesheet">
   <style>
+    /* Base styles for desktop and larger screens */
     body {
       background: #000;
       color: #f7c200;
       font-family: 'Braah One', Arial, sans-serif;
       min-height: 100vh;
       margin: 0;
+      display: flex; /* Use flexbox for overall page layout */
+      flex-direction: column; /* Stack content vertically */
     }
+
     .navbar {
       width: 100%;
       background: #181818;
@@ -21,6 +24,7 @@
       box-sizing: border-box;
       border-bottom: 1px solid #222;
     }
+
     .navbar-title {
       display: flex;
       align-items: center;
@@ -32,17 +36,20 @@
       letter-spacing: 1px;
       transition: text-decoration 0.2s;
     }
+
     .navbar-title img {
       height: 2em;
       width: 2em;
       margin-right: 0.5em;
       vertical-align: middle;
     }
+
     .navbar-links {
       margin-left: auto;
       display: flex;
       gap: 2em;
     }
+
     .navbar-links a {
       color: #f7c200;
       text-decoration: none;
@@ -50,29 +57,33 @@
       font-size: 1em;
       transition: text-decoration 0.2s;
     }
+
     .navbar-links a:hover {
       text-decoration: underline;
     }
-  </style>
-</head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="navbar-title"><img src="icon.png" alt="Top Binz Icon"/>Top Binz</a>
-    <div class="navbar-links">
-      <a href="about-us.html">About Us</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </div>
-  </nav>
-</head>
-<body>
-  <h1 style="text-align: center">Welcome to Top Binz</h1>
-  <div style="max-width:800px; margin: 1em auto 0 auto; display: flex; justify-content: center; align-items: center;">
-    <p style="text-align:center; width:100%; font-size:1.15em; color:#dfdbce; font-family:'Braah One', Arial, sans-serif; margin:0;">Top Binz is a mobile app that enables soccer players to upload videos of their shooting sessions and receive detailed accuracy and precision metrics, along with a visual heatmap of shot placement. These insights help players analyze performance, identify patterns, and refine their shooting technique over time.</p>
-  </div>
-  <div style="display:flex; justify-content:center; margin-top:1.2em;">
-    <a href="https://apps.apple.com/us/app/top-binz/id6746736578" target="_blank" class="download-btn">Download Now</a>
-  </div>
-  <style>
+
+    /* Main content styling */
+    h1 {
+      text-align: center;
+      font-size: 2.5em; /* Adjusted for consistency */
+      margin-top: 1em;
+    }
+
+    .content-container {
+      max-width: 800px;
+      margin: 1em auto; /* Center the container */
+      padding: 0 1em; /* Add horizontal padding for smaller screens */
+      text-align: center;
+    }
+
+    .description-text {
+      width: 100%;
+      font-size: 1.15em;
+      color: #dfdbce;
+      font-family: 'Braah One', Arial, sans-serif;
+      margin: 0;
+    }
+
     .download-btn {
       display: inline-block;
       padding: 0.7em 2em;
@@ -87,8 +98,9 @@
       letter-spacing: 1px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-      margin-bottom: 0.5em;
+      margin-top: 1.2em; /* Adjusted margin to center better */
     }
+
     .download-btn:hover {
       background: #f7c200;
       color: #181818;
@@ -96,19 +108,97 @@
       transform: scale(1.05);
       cursor: pointer;
     }
-  </style>
-  <div class="screenshots-row" style="display:flex; justify-content:center; align-items:flex-end; gap:2em; margin-top:2em;">
-    <img src="IMG_7261.PNG" alt="Screenshot 1" class="screenshot-img" style="height:400px; width:auto; border-radius:1em; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s;">
-    <img src="IMG_7258.PNG" alt="Screenshot 2" class="screenshot-img" style="height:400px; width:auto; border-radius:1em; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s;">
-    <img src="IMG_7255.PNG" alt="Screenshot 5" class="screenshot-img" style="height:400px; width:auto; border-radius:1em; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s;">
-    <img src="IMG_7260.PNG" alt="Screenshot 5" class="screenshot-img" style="height:400px; width:auto; border-radius:1em; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s;">
-  </div>
-  <style>
+
+    .screenshots-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align images to the top */
+      gap: 2em;
+      margin-top: 2em;
+      padding: 0 1em; /* Add horizontal padding for responsiveness */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+    }
+
+    .screenshot-img {
+      height: 400px; /* Original height for desktop */
+      width: auto;
+      border-radius: 1em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
     .screenshot-img:hover {
       transform: scale(1.08);
       z-index: 2;
       box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
+
+    /* Media queries for mobile responsiveness */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.5em 1em; /* Reduce padding on smaller screens */
+      }
+      .navbar-title {
+        font-size: 1.2em; /* Smaller title font size */
+      }
+      .navbar-title img {
+        height: 1.5em; /* Smaller icon size */
+        width: 1.5em;
+      }
+      .navbar-links {
+        gap: 1em; /* Reduce gap between navigation links */
+      }
+      .navbar-links a {
+        font-size: 0.9em; /* Smaller link font size */
+      }
+
+      h1 {
+        font-size: 2em; /* Smaller heading font size */
+      }
+
+      .description-text {
+        font-size: 1em; /* Slightly smaller description text */
+      }
+
+      .download-btn {
+        padding: 0.6em 1.5em; /* Smaller button padding */
+        font-size: 1em; /* Smaller button font size */
+      }
+
+      .screenshots-row {
+        flex-direction: column; /* Stack screenshots vertically on mobile */
+        align-items: center; /* Center stacked images */
+        gap: 1.5em; /* Adjust gap between stacked images */
+      }
+
+      .screenshot-img {
+        height: auto; /* Allow height to adjust automatically */
+        width: 90%; /* Make images take up 90% of the screen width */
+        max-width: 300px; /* Prevent images from getting too large on some tablets */
+      }
+    }
   </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-title"><img src="icon.png" alt="Top Binz Icon"/>Top Binz</a>
+    <div class="navbar-links">
+      <a href="about-us.html">About Us</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </nav>
+  <h1>Welcome to Top Binz</h1>
+  <div class="content-container">
+    <p class="description-text">Top Binz is a mobile app that enables soccer players to upload videos of their shooting sessions and receive detailed accuracy and precision metrics, along with a visual heatmap of shot placement. These insights help players analyze performance, identify patterns, and refine their shooting technique over time.</p>
+  </div>
+  <div style="display:flex; justify-content:center;">
+    <a href="https://apps.apple.com/us/app/top-binz/id6746736578" target="_blank" class="download-btn">Download Now</a>
+  </div>
+  <div class="screenshots-row">
+    <img src="IMG_7261.PNG" alt="Screenshot 1" class="screenshot-img">
+    <img src="IMG_7258.PNG" alt="Screenshot 2" class="screenshot-img">
+    <img src="IMG_7255.PNG" alt="Screenshot 3" class="screenshot-img">
+    <img src="IMG_7260.PNG" alt="Screenshot 4" class="screenshot-img">
+  </div>
 </body>
 </html>
