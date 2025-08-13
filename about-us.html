@@ -6,12 +6,15 @@
   <title>About Us - Top Binz App</title>
   <link href="https://fonts.googleapis.com/css?family=Braah+One&display=swap" rel="stylesheet">
   <style>
+    /* Base styles for desktop and larger screens */
     body {
       background: #000;
       color: #f7c200;
       font-family: 'Braah One', Arial, sans-serif;
       min-height: 100vh;
       margin: 0;
+      display: flex;
+      flex-direction: column; /* Ensure body uses flex for overall layout */
     }
     .navbar {
       width: 100%;
@@ -54,6 +57,8 @@
     .navbar-links a:hover {
       text-decoration: underline;
     }
+
+    /* About Us Page Specific Styles */
     .about-us-title {
       text-align: center;
       font-size: 2.2em;
@@ -65,21 +70,22 @@
     }
     .about-us-section {
       max-width: 900px;
-      margin: 0 auto 0 auto;
+      margin: 0 auto; /* Center the section horizontally */
       background: #181818;
       border-radius: 0.7em;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 4em 3em;
-      display: flex;
+      display: flex; /* Desktop: horizontal layout */
       align-items: center;
       gap: 4em;
     }
     .about-us-image {
-      width: 12 em;
+      width: 12em; /* Keep original size for desktop */
       height: 12em;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid #f7c200;
+      flex-shrink: 0; /* Prevent image from shrinking */
     }
     .about-us-info {
       display: flex;
@@ -95,6 +101,53 @@
       font-size: 1.05em;
       color: #dfdbce;
       opacity: 0.85;
+    }
+
+    /* Media queries for mobile responsiveness */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.5em 1em; /* Adjust navbar padding */
+      }
+      .navbar-title {
+        font-size: 1.2em; /* Smaller title font size */
+      }
+      .navbar-title img {
+        height: 1.5em; /* Smaller icon size */
+        width: 1.5em;
+      }
+      .navbar-links {
+        gap: 1em; /* Reduce gap between links */
+      }
+      .navbar-links a {
+        font-size: 0.9em; /* Smaller link font size */
+      }
+
+      .about-us-title {
+        font-size: 1.8em; /* Smaller title for mobile */
+        margin-top: 1.5em;
+      }
+
+      .about-us-section {
+        flex-direction: column; /* Stack image and text vertically */
+        align-items: center; /* Center items horizontally */
+        padding: 2em 1.5em; /* Adjust padding for mobile */
+        gap: 1.5em; /* Reduce gap between stacked items */
+        margin: 0 1em; /* Add side margins for smaller screens */
+      }
+
+      .about-us-image {
+        width: 10em; /* Slightly smaller image on mobile */
+        height: 10em;
+      }
+
+      .about-us-name {
+        font-size: 1.3em; /* Smaller name font size */
+        text-align: center; /* Center name */
+      }
+      .about-us-desc {
+        font-size: 0.95em; /* Smaller description font size */
+        text-align: center; /* Center description */
+      }
     }
   </style>
 </head>
