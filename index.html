@@ -13,6 +13,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden; /* Prevent horizontal scroll due to animated elements */
     }
 
     .navbar {
@@ -23,6 +24,16 @@
       padding: 0.5em 1.5em;
       box-sizing: border-box;
       border-bottom: 1px solid #222;
+      z-index: 1000; /* Ensure navbar is above background elements */
+      position: fixed; /* Changed to fixed for dynamic hiding/showing */
+      top: 0; /* Align to the top */
+      left: 0;
+      transform: translateY(0); /* Default visible state */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for hiding/showing */
+    }
+
+    .navbar.navbar-hidden {
+      transform: translateY(-100%); /* Move off-screen upwards */
     }
 
     .navbar-title {
@@ -62,21 +73,67 @@
       text-decoration: underline;
     }
 
-    /* Main content styling */
-    h1 {
-      text-align: center;
+    /* Initial Page Load Animations (for elements at the top) */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    /* Main Section Styling (no gradients, just black background) */
+    /* Add padding-top to body to prevent content from being hidden by fixed navbar */
+    body {
+        padding-top: 4em; /* Adjust based on actual navbar height */
+    }
+
+    .hero-section,
+    .features,
+    .privacy-section, 
+    .image-sections-container {
+      background: #000; /* Solid black background */
+      position: relative; /* For absolute positioned animated elements */
+      overflow: hidden; /* Keep elements within section boundaries */
+      padding: 1em; /* Ensure content is not too close to edges */
+      box-sizing: border-box;
+    }
+
+    /* Hero Section to fill initial viewport */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertically center content */
+      align-items: center; /* Horizontally center content */
+      min-height: calc(100vh - 4em); /* Adjust for navbar height (approx 4em) */
+    }
+
+    .hero-section h1 {
       font-size: 2.5em;
-      margin-top: 1em;
+      margin-top: 0; /* Reset default h1 margin for vertical centering */
+      margin-bottom: 0.5em;
+      z-index: 1; /* Ensure text is above animated background */
+      position: relative;
     }
 
-    .content-container {
+    .hero-section .content-container {
       max-width: 800px;
-      margin: 1em auto;
+      margin: 0.5em auto; /* Adjust margin for better spacing within hero */
       padding: 0 1em;
-      text-align: center;
+      z-index: 1; /* Ensure text is above animated background */
+      position: relative;
     }
 
-    .description-text {
+    .hero-section .description-text {
       width: 100%;
       font-size: 1.15em;
       color: #dfdbce;
@@ -84,7 +141,7 @@
       margin: 0;
     }
 
-    .download-btn {
+    .hero-section .download-btn {
       display: inline-block;
       padding: 0.7em 2em;
       font-size: 1.15em;
@@ -98,15 +155,139 @@
       letter-spacing: 1px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-      margin-top: 1.2em;
+      margin-top: 1.5em; /* Adjusted margin top */
+      z-index: 1; /* Ensure button is above animated background */
+      position: relative;
     }
 
-    .download-btn:hover {
+    .hero-section .download-btn:hover {
       background: #f7c200;
       color: #181818;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
       transform: scale(1.05);
       cursor: pointer;
+    }
+
+    /* Generic class for elements that should animate on scroll */
+    .hidden-on-load {
+      opacity: 0;
+      transform: translateY(40px); /* Start farther down for scroll animation */
+    }
+
+    /* This class will be added by JS to trigger the animation */
+    .hidden-on-load.animate {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    /* Features Section specifics */
+    .features {
+      padding: 4em 0;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2em;
+      color: #f7c200;
+      margin-bottom: 1.5em; /* More space below heading */
+      z-index: 1; /* Ensure heading is above animated background */
+      position: relative;
+    }
+
+    .feature-boxes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* Allows boxes to wrap on smaller screens */
+      gap: 2em;
+      max-width: 1000px;
+      margin: 0 auto;
+      z-index: 1; /* Ensure boxes are above animated background */
+      position: relative;
+    }
+
+    .feature-box {
+      background: #181818;
+      border: 1px solid #222;
+      border-radius: 1em;
+      padding: 2em;
+      width: 300px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease-out; /* Keep hover effect transition */
+      text-align: left;
+    }
+    
+    .feature-box h3 {
+      font-size: 1.5em;
+      margin-top: 0;
+      color: #f7c200;
+    }
+
+    .feature-box p {
+      font-size: 1em;
+      color: #dfdbce;
+    }
+
+    /* Privacy Section Content Container */
+    .privacy-content-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .privacy-section {
+      padding: 4em 0; 
+    }
+
+    .privacy-section h2 {
+      font-size: 2em;
+      color: #f7c200;
+      margin-bottom: 1.5em;
+      z-index: 1;
+      position: relative;
+    }
+
+    .privacy-section p {
+      font-size: 1.15em;
+      color: #dfdbce;
+      line-height: 1.6;
+      z-index: 1;
+      position: relative;
+      padding: 0 1em; 
+    }
+
+    .privacy-section a {
+      color: #f7c200; 
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .privacy-section a:hover {
+      color: #fff; 
+    }
+
+    /* Image Sections Container specifics */
+    .image-sections-container {
+        padding: 4em 0; 
+        text-align: center; 
+    }
+    
+    .image-sections-container h2 { 
+      font-size: 2em;
+      color: #f7c200;
+      margin-bottom: 0.5em; 
+      z-index: 1; 
+      position: relative;
+    }
+
+    .image-sections-container .description-text { 
+      font-size: 1.15em;
+      color: #dfdbce;
+      margin-bottom: 2em; 
+      z-index: 1;
+      position: relative;
+      max-width: 800px; 
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1em; 
     }
 
     /* Desktop Screenshots - Default visibility */
@@ -115,8 +296,11 @@
       justify-content: center;
       align-items: flex-end;
       gap: 2em;
-      margin-top: 2em;
+      margin-top: 0; 
       padding: 0 1em;
+      margin-bottom: 0; 
+      z-index: 1; 
+      position: relative;
     }
 
     .desktop-screenshots .screenshot-img {
@@ -135,23 +319,25 @@
 
     /* Mobile Carousel - Initially hidden */
     .mobile-carousel-container {
-      display: none; /* Hidden by default */
+      display: none; 
       position: relative;
-      max-width: 400px; /* Max width for mobile carousel */
-      margin: 2em auto;
+      max-width: 400px; 
+      margin: 2em auto; 
       overflow: hidden;
       border-radius: 1em;
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      z-index: 1; 
+      position: relative;
     }
 
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
-      width: 100%; /* Ensure track takes full width */
+      width: 100%; 
     }
 
     .carousel-slide {
-      min-width: 100%; /* Each slide takes full width of the container */
+      min-width: 100%; 
       box-sizing: border-box;
       display: flex;
       justify-content: center;
@@ -159,8 +345,8 @@
     }
 
     .carousel-slide img {
-      width: 90%; /* Image takes 90% of slide width */
-      max-width: 300px; /* Limit image size within slide */
+      width: 90%; 
+      max-width: 300px; 
       height: auto;
       border-radius: 0.8em;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -213,6 +399,49 @@
       background-color: #f7c200;
     }
 
+    /* Animated background elements */
+    .animated-bg-element {
+      position: absolute;
+      background-color: #f7c200; /* Gold color */
+      pointer-events: none; /* Allow clicks to pass through */
+      z-index: 0; /* Behind content */
+      animation: floatAndRotate 15s infinite linear;
+    }
+
+    /* Soccer ball shape - a circle */
+    .animated-bg-element.shape-ball {
+      border-radius: 50%;
+    }
+
+    /* Target shape - a diamond (rotated square) */
+    .animated-bg-element.shape-target {
+      border-radius: 0; /* Square corners */
+    }
+
+    /* Keyframes for floating and rotating animation */
+    @keyframes floatAndRotate {
+      0% {
+        transform: translateY(0px) scale(var(--initial-scale, 0.8)) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) scale(var(--mid-scale, 1.2)) rotate(180deg);
+      }
+      100% {
+        transform: translateY(0px) scale(var(--initial-scale, 0.8)) rotate(360deg);
+      }
+    }
+
+    /* Section Divider */
+    .section-divider {
+      width: 80%;
+      max-width: 600px;
+      height: 3px; /* Thin line */
+      background-color: #f7c200;
+      margin: 4em auto; /* Centered with vertical spacing */
+      border-radius: 5px; /* Slightly rounded ends */
+      opacity: 0.3; /* Subtle */
+    }
+
     /* Media queries for mobile responsiveness */
     @media (max-width: 768px) {
       .navbar {
@@ -232,17 +461,30 @@
         font-size: 0.9em;
       }
 
-      h1 {
+      .hero-section h1 {
         font-size: 2em;
       }
 
-      .description-text {
+      .hero-section .description-text {
         font-size: 1em;
       }
 
-      .download-btn {
+      .hero-section .download-btn {
         padding: 0.6em 1.5em;
         font-size: 1em;
+      }
+
+      .features {
+        padding: 2em 0;
+      }
+
+      .features h2 {
+        font-size: 1.8em;
+      }
+      
+      .feature-box {
+        width: 85%; /* Full width on small screens */
+        margin-bottom: 1em;
       }
 
       /* Hide desktop screenshots on mobile */
@@ -254,6 +496,18 @@
       .mobile-carousel-container {
         display: block;
       }
+
+      .privacy-section {
+        padding: 2em 0; /* Adjust padding for mobile, still letting inner container handle horizontal */
+      }
+
+      .privacy-section p {
+        padding: 0 1em; /* Ensure paragraph also has horizontal padding on mobile */
+      }
+
+      .image-sections-container .description-text {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -261,46 +515,115 @@
   <nav class="navbar">
     <a href="index.html" class="navbar-title"><img src="icon.png" alt="Top Binz Icon"/>Top Binz</a>
     <div class="navbar-links">
+      <a href="index.html#hero-section">Home</a> 
+      <a href="index.html#features">Features</a> 
       <a href="about-us.html">About Us</a>
       <a href="privacy-policy.html">Privacy Policy</a>
     </div>
   </nav>
-  <h1>Welcome to Top Binz</h1>
-  <div class="content-container">
-    <p class="description-text">Top Binz is a mobile app that enables soccer players to upload videos of their shooting sessions and receive detailed accuracy and precision metrics, along with a visual heatmap of shot placement. These insights help players analyze performance, identify patterns, and refine their shooting technique over time.</p>
-  </div>
-  <div style="display:flex; justify-content:center;">
-    <a href="https://apps.apple.com/us/app/top-binz/id6746736578" target="_blank" class="download-btn">Download For IOS</a>
+
+  <!-- Hero Section: Takes up full initial screen height -->
+  <div id="hero-section" class="hero-section">
+    <h1 class="slide-in" style="animation-delay: 0.3s;">Welcome to Top Binz</h1>
+    <div class="content-container slide-in" style="animation-delay: 0.6s;">
+      <p class="description-text">Top Binz is a mobile app that enables soccer players to upload videos of their shooting sessions and receive detailed accuracy and precision metrics, along with a visual heatmap of shot placement. These insights help players analyze performance, identify patterns, and refine their shooting technique over time.</p>
+    </div>
+    <div style="display:flex; justify-content:center;">
+      <a href="https://apps.apple.com/us/app/top-binz/id6746736578" target="_blank" class="download-btn slide-in" style="animation-delay: 0.9s;">Download For IOS</a>
+    </div>
   </div>
 
-  <!-- Desktop Screenshots Section -->
-  <div class="desktop-screenshots">
-    <img src="IMG_7261.PNG" alt="Screenshot 1" class="screenshot-img">
-    <img src="IMG_7258.PNG" alt="Screenshot 2" class="screenshot-img">
-    <img src="IMG_7255.PNG" alt="Screenshot 3" class="screenshot-img">
-    <img src="IMG_7260.PNG" alt="Screenshot 4" class="screenshot-img">
+  <div class="section-divider"></div>
+
+  <!-- New Features Section: Appears on scroll -->
+  <div id="features" class="features">
+    <h2 class="hidden-on-load" data-animation-delay="0.1s">Powerful Performance Metrics</h2>
+    <div class="feature-boxes">
+      <div class="feature-box hidden-on-load" data-animation-delay="0.3s">
+        <h3>Heatmap Analysis 🥅</h3>
+        <p>Visualize exactly where your shots are landing on the goal, helping you identify your strengths and weaknesses at a glance.</p>
+      </div>
+      <div class="feature-box hidden-on-load" data-animation-delay="0.5s">
+        <h3>Accuracy Score 🎯</h3>
+        <p>Shows how close your shots are to the goal corners displaying your shot-on-goal performance.</p>
+      </div>
+      <div class="feature-box hidden-on-load" data-animation-delay="0.7s">
+        <h3>Precision Metrics 📏</h3>
+        <p>Our custom clustering algorithm reveals whether you can reliably hit the same spot consistently.</p>
+      </p>
+    </div>
   </div>
 
-  <!-- Mobile Carousel Section -->
-  <div class="mobile-carousel-container">
-    <div class="carousel-track">
-      <div class="carousel-slide"><img src="IMG_7261.PNG" alt="Screenshot 1"></div>
-      <div class="carousel-slide"><img src="IMG_7258.PNG" alt="Screenshot 2"></div>
-      <div class="carousel-slide"><img src="IMG_7255.PNG" alt="Screenshot 3"></div>
-      <div class="carousel-slide"><img src="IMG_7260.PNG" alt="Screenshot 4"></div>
+  <div class="section-divider"></div>
+
+  <!-- NEW Revised Privacy Section -->
+  <div id="privacy-section" class="privacy-section">
+    <div class="privacy-content-container hidden-on-load" data-animation-delay="0.1s">
+      <h2>Your Privacy Matters</h2>
+      <p>At Top Binz, your privacy is paramount. We only collect the coordinates of the goalpost and soccer ball from your videos. We want to be clear: we do not store any information from selected videos themselves or any of their frames. Your data is used solely to provide performance metrics and insights directly to you. For more information, please see our full <a href="privacy-policy.html">Privacy Policy</a>.</p>
     </div>
-    <button class="carousel-button prev">&#10094;</button>
-    <button class="carousel-button next">&#10095;</button>
-    <div class="carousel-dots">
-      <span class="dot active" data-slide-index="0"></span>
-      <span class="dot" data-slide-index="1"></span>
-      <span class="dot" data-slide-index="2"></span>
-      <span class="dot" data-slide-index="3"></span>
-    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- New: Container for the image sections -->
+  <div id="image-sections-container" class="image-sections-container">
+      <h2 class="hidden-on-load" data-animation-delay="0.1s">Top Binz In Use</h2>
+      <p class="description-text hidden-on-load" data-animation-delay="0.3s">Here are some screens in our app, showing you how to use it.</p>
+      <!-- Desktop Screenshots Section: Now at the bottom, appears on scroll -->
+      <div class="desktop-screenshots hidden-on-load" data-animation-delay="0.1s">
+        <img src="IMG_7261.PNG" alt="Screenshot 1" class="screenshot-img">
+        <img src="IMG_7258.PNG" alt="Screenshot 2" class="screenshot-img">
+        <img src="IMG_7255.PNG" alt="Screenshot 3" class="screenshot-img">
+        <img src="IMG_7260.PNG" alt="Screenshot 4" class="screenshot-img">
+      </div>
+
+      <!-- Mobile Carousel Section: Now at the bottom, appears on scroll -->
+      <div class="mobile-carousel-container hidden-on-load" data-animation-delay="0.3s">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="IMG_7261.PNG" alt="Screenshot 1"></div>
+          <div class="carousel-slide"><img src="IMG_7258.PNG" alt="Screenshot 2"></div>
+          <div class="carousel-slide"><img src="IMG_7255.PNG" alt="Screenshot 3"></div>
+          <div class="carousel-slide"><img src="IMG_7260.PNG" alt="Screenshot 4"></div>
+        </div>
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
+        <div class="carousel-dots">
+          <span class="dot active" data-slide-index="0"></span>
+          <span class="dot" data-slide-index="1"></span>
+          <span class="dot" data-slide-index="2"></span>
+          <span class="dot" data-slide-index="3"></span>
+        </div>
+      </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const navbar = document.querySelector('.navbar');
+      let lastScrollY = window.scrollY;
+      // Adjusted hideThreshold to make it less aggressive for small scrolls down
+      const hideThreshold = 100; // Pixels to scroll down before navbar starts to hide
+
+      // --- Navbar Visibility Logic ---
+      function handleScroll() {
+        if (window.scrollY > lastScrollY && window.scrollY > hideThreshold) {
+          // Scrolling down and past the hide threshold
+          navbar.classList.add('navbar-hidden');
+        } else if (window.scrollY < lastScrollY || window.scrollY <= 0) {
+          // Scrolling up or at the very top of the page
+          navbar.classList.remove('navbar-hidden');
+        }
+        lastScrollY = window.scrollY;
+      }
+
+      // Initial state: ensure navbar is visible on load
+      // No initial hide timeout needed; it will remain visible until scrolled down
+      navbar.classList.remove('navbar-hidden');
+
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll);
+
+      // --- Existing Carousel Logic ---
       const carouselTrack = document.querySelector('.carousel-track');
       const slides = Array.from(document.querySelectorAll('.carousel-slide'));
       const prevButton = document.querySelector('.carousel-button.prev');
@@ -309,7 +632,6 @@
       const dots = Array.from(document.querySelectorAll('.dot'));
       let currentIndex = 0;
 
-      // Function to update the carousel display
       const updateCarousel = () => {
         carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
         dots.forEach((dot, index) => {
@@ -321,19 +643,16 @@
         });
       };
 
-      // Event listener for the "Previous" button
       prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
         updateCarousel();
       });
 
-      // Event listener for the "Next" button
       nextButton.addEventListener('click', () => {
         currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
         updateCarousel();
       });
 
-      // Event listeners for the dot navigation
       dots.forEach(dot => {
         dot.addEventListener('click', (event) => {
           currentIndex = parseInt(event.target.dataset.slideIndex);
@@ -341,8 +660,6 @@
         });
       });
 
-      // Initialize carousel on load if it's visible (for mobile)
-      // This ensures correct display if user loads directly on mobile size
       const checkCarouselVisibility = () => {
         const mobileCarousel = document.querySelector('.mobile-carousel-container');
         if (window.getComputedStyle(mobileCarousel).display !== 'none') {
@@ -350,9 +667,85 @@
         }
       };
 
-      // Call on load and also on resize to handle orientation changes
       checkCarouselVisibility();
       window.addEventListener('resize', checkCarouselVisibility);
+
+      // --- JavaScript for Scroll-Triggered Animations for all elements below the fold ---
+      const observerOptions = {
+        root: null, // use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the item is visible
+      };
+
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.dataset.animationDelay;
+            if (delay) { // Only apply if delay is specified
+                entry.target.style.animationDelay = delay;
+            }
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target); // Stop observing once it's animated
+          }
+        });
+      };
+      
+      const observer = new IntersectionObserver(animateOnScroll, observerOptions);
+      
+      // Observe all elements with the 'hidden-on-load' class
+      const elementsToAnimateOnScroll = document.querySelectorAll('.hidden-on-load');
+      elementsToAnimateOnScroll.forEach(el => {
+        observer.observe(el);
+      });
+
+      // --- NEW JavaScript for Animated Background Elements ---
+      const createAnimatedBackgroundElements = (containerId, numberOfElements, transparencyLevel) => {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        for (let i = 0; i < numberOfElements; i++) {
+          const element = document.createElement('div');
+          element.classList.add('animated-bg-element');
+          
+          // Randomly choose between soccer ball (circle) and target (diamond)
+          const isBall = Math.random() > 0.5;
+          if (isBall) {
+            element.classList.add('shape-ball');
+          } else {
+            element.classList.add('shape-target');
+            // Initial transform for target shape to ensure it starts as a diamond
+            element.style.transform = 'rotate(45deg)'; 
+          }
+
+          // Apply size based on transparencyLevel (making more transparent objects smaller)
+          const baseSize = transparencyLevel === 0.25 ? 60 : 30; // Larger for less transparent
+          const size = Math.random() * (baseSize * 0.8) + baseSize * 0.5; // Size variation
+          element.style.width = `${size}px`;
+          element.style.height = `${size}px`;
+
+          // Set opacity directly and consistently for each element
+          element.style.opacity = transparencyLevel;
+          
+          // Apply scale based on transparencyLevel (making less transparent objects scale more)
+          element.style.setProperty('--initial-scale', transparencyLevel === 0.25 ? '0.9' : '0.7');
+          element.style.setProperty('--mid-scale', transparencyLevel === 0.25 ? '1.3' : '0.9');
+
+          element.style.left = `${Math.random() * 100}%`;
+          element.style.top = `${Math.random() * 100}%`;
+
+          element.style.animationDelay = `${Math.random() * 5}s`; // Stagger animation start
+          element.style.animationDuration = `${Math.random() * 10 + 15}s`; // Duration between 15s and 25s for slower movement
+
+          container.appendChild(element);
+        }
+      };
+
+      // Call the function for each section with the desired transparency level
+      const universalTransparency = 0.25; 
+      createAnimatedBackgroundElements('hero-section', 5, universalTransparency); 
+      createAnimatedBackgroundElements('features', 7, universalTransparency); 
+      createAnimatedBackgroundElements('privacy-section', 6, universalTransparency); 
+      createAnimatedBackgroundElements('image-sections-container', 4, universalTransparency); 
     });
   </script>
 </body>
