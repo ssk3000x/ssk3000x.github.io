@@ -5,135 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email Confirmed - Top Binz App</title>
   <link href="https://fonts.googleapis.com/css?family=Braah+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="/splash.png">
-  <style>
-    /* Base styles for desktop and larger screens */
-    body {
-      background: #000;
-      color: #f7c200;
-      font-family: 'Braah One', Arial, sans-serif;
-      min-height: 100vh;
-      margin: 0;
-      display: flex; /* Use flexbox for overall page layout */
-      flex-direction: column; /* Stack content vertically */
-    }
-
-    /* Navbar styling (consistent with other pages) */
-    .navbar {
-      width: 100%;
-      background: #181818;
-      display: flex;
-      align-items: center;
-      padding: 0.5em 1.5em;
-      box-sizing: border-box;
-      border-bottom: 1px solid #222;
-    }
-    .navbar-title {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #f7c200;
-      font-family: 'Braah One', Arial, sans-serif;
-      font-size: 1.5em;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: text-decoration 0.2s;
-    }
-    .navbar-title img {
-      height: 2em;
-      width: 2em;
-      margin-right: 0.5em;
-      vertical-align: middle;
-    }
-    .navbar-links {
-      margin-left: auto;
-      display: flex;
-      gap: 2em;
-    }
-    .navbar-links a {
-      color: #f7c200;
-      text-decoration: none;
-      font-family: 'Braah One', Arial, sans-serif;
-      font-size: 1em;
-      transition: text-decoration 0.2s;
-    }
-    .navbar-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Message content styling */
-    .message {
-      text-align: center;
-      margin-top: 4em; /* Top margin for spacing */
-      max-width: 600px; /* Limit width for better readability on large screens */
-      margin-left: auto;
-      margin-right: auto; /* Center the message box */
-      padding: 0 1.5em; /* Add horizontal padding to prevent content from touching edges */
-      flex-grow: 1; /* Allow message section to take available vertical space */
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* Center content vertically within the available space */
-    }
-    .message h1 {
-      font-family: 'Braah One', Arial, sans-serif;
-      font-size: 2em;
-      margin-bottom: 1em;
-      color: #f7c200; /* Ensure consistent heading color */
-    }
-    .message p {
-      font-size: 1.1em;
-      font-family: 'Braah One', Arial, sans-serif;
-      color: #dfdbce; /* Ensure consistent text color */
-    }
-
-    /* Media queries for mobile responsiveness */
-    @media (max-width: 768px) {
-      /* Navbar adjustments (consistent with other pages) */
-      .navbar {
-        padding: 0.5em 1em;
-      }
-      .navbar-title {
-        font-size: 1.2em;
-      }
-      .navbar-title img {
-        height: 1.5em;
-        width: 1.5em;
-      }
-      .navbar-links {
-        gap: 1em;
-      }
-      .navbar-links a {
-        font-size: 0.9em;
-      }
-
-      /* Message content adjustments for mobile */
-      .message {
-        margin-top: 2em; /* Reduce top margin on smaller screens */
-        padding: 0 1em; /* Further reduce horizontal padding for very small screens */
-      }
-      .message h1 {
-        font-size: 1.6em; /* Smaller heading font size for mobile */
-        margin-bottom: 0.8em;
-      }
-      .message p {
-        font-size: 1em; /* Slightly smaller paragraph font size for mobile */
-      }
-    }
-  </style>
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.html" class="navbar-title"><img src="icon.png" alt="Top Binz Icon"/>Top Binz App</a>
+    <a href="index.html" class="navbar-title"><img src="icon.png" alt="Top Binz Icon"/>Top Binz</a>
     <div class="navbar-links">
-      <a href="index.html#home">Home</a> <!-- Updated Home link -->
-      <a href="index.html#features">Features</a> <!-- Updated Features link -->
+      <a href="index.html">Home</a>
+      <a href="index.html#features">Features</a>
       <a href="about-us.html">About Us</a>
       <a href="privacy-policy.html">Privacy Policy</a>
     </div>
   </nav>
-  <div class="message">
-    <h1>Your email has been confirmed successfully!</h1>
-    <p>You can now close this website and login to the app.</p>
-  </div>
+
+  <main>
+    <section class="content-section animated-bg-container" data-bg-element-count="6">
+        <div class="content-section-container">
+            <div class="confirmation-message slide-in">
+                <h1>Your email has been confirmed successfully!</h1>
+                <p>You can now close this website and login to the app.</p>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="about-us.html">About Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="https://apps.apple.com/us/app/top-binz/id6746736578" target="_blank">Download App</a>
+        </div>
+        <div class="footer-copyright">
+            © 2025 Top Binz. All rights reserved.
+        </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
