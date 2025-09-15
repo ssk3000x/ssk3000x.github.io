@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
       });
     });
+
+    // ADDED: Call updateCarousel on load to set the initial position.
+    updateCarousel();
   }
 
   // --- Scroll-Triggered Animations (Global) ---
